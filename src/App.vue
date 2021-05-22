@@ -1,20 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="http://lotto.pl/cdn/img/logo.2b905a2.svg"> Wyniki losowań
+  <Lotto/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Lotto from './components/Lotto.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Lotto,
   },
 };
 </script>
 
-<style lang="scss">
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
