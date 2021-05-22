@@ -17,7 +17,7 @@
         />
       </form>
     </div>
-    <Result />
+    <Result :game="gameSelect" :gamesNumber="gamesNumber" />
   </div>
 </template>
 
