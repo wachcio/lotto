@@ -1,21 +1,9 @@
 <template>
   <div class="result" v-if="result">
-    <div v-for="gameResult in result.gameResult" :key="gameResult.drawId">
-      <!-- <tr>
-                <td>
-                    {{ new Date(gameResult.drawDate).toLocaleDateString() }}
-                </td>
-                <td>{{ gameResult.winnerNumber[0].number }}</td>
-                <td>{{ gameResult.winnerNumber[1].number }}</td>
-                <td>{{ gameResult.winnerNumber[2].number }}</td>
-                <td>{{ gameResult.winnerNumber[3].number }}</td>
-                <td>{{ gameResult.winnerNumber[4].number }}</td>
-                <td>{{ gameResult.winnerNumber[5].number }}</td>
-                <td>{{ gameResult.winnerNumber[6].number }}</td>
-            </tr> -->
-      {{ new Date(gameResult.drawDate).toLocaleDateString() }} -
-      {{ sortData(gameResult.winnerNumber) }}
-      <b>{{ gameResult.winnerNumber[6].number }}</b>
+    <div v-for="(gameResult, index) in result" :key="index">
+      {{ index + 1 }}) {{ new Date(gameResult.drawDate).toLocaleDateString() }} -
+      {{ gameResult.results[0].resultsJson.toString() }}
+      <b>{{ gameResult.results[0].specialResults.toString() }}</b>
     </div>
   </div>
 </template>
@@ -36,28 +24,23 @@ export default {
   },
   methods: {
     async getData() {
+      let that = this;
       return await axios
-        .get(`https://www.lotto.pl/api/lotteries/draw-results/by-gametype`, {
+        .get(`http://lotto.wachcio.pl/API/lotto.php`, {
           params: {
             game: this.game,
             index: 1,
             size: this.gamesNumber,
             sort: "drawDate",
             order: "DESC"
-          },
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-            // "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-            "Content-Type": "application/json;charset=utf-8"
           }
         })
         .then(function(response) {
-          console.log(response.data);
-          console.log(this.result);
+          // console.log(response.data);
+          // console.log(that.result);
 
-          this.result = response.data;
-          // return response;
+          that.result = response.data.items;
+          // return response.data;
         })
         .catch(function(error) {
           console.log(error);
@@ -76,10 +59,10 @@ export default {
   },
   watch: {
     game: function() {
-      this.result = this.getData();
+      this.getData();
     },
     gamesNumber: function() {
-      this.result = this.getData();
+      this.getData();
     }
   }
 };

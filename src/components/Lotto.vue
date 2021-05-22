@@ -2,22 +2,26 @@
   <div>
     <div>
       <form>
-        <label for="game">Wybierz grę z której chcesz poznać wyniki:</label>
-        <select id="game" name="game" v-model="gameSelect">
-          <option v-for="game in games" :key="game.id">{{ game }}</option>
-        </select>
-        <label for="gamesNumber">Wybierz liczbę ostatnich losowań (10-1000):</label>
-        <input
-          type="number"
-          id="gamesNumber"
-          name="gamesNumber"
-          min="10"
-          max="1000"
-          v-model="gamesNumber"
-        />
+        <div>
+          <label for="game">Wybierz grę z której chcesz poznać wyniki:</label>
+          <select id="game" name="game" v-model="gameSelect">
+            <option v-for="game in games" :key="game.id">{{ game }}</option>
+          </select>
+        </div>
+        <div>
+          <label for="gamesNumber">Wybierz liczbę ostatnich losowań (10-1000):</label>
+          <input
+            type="number"
+            id="gamesNumber"
+            name="gamesNumber"
+            min="10"
+            max="1000"
+            v-model="gamesNumber"
+          />
+        </div>
       </form>
     </div>
-    <Result :game="gameSelect" :gamesNumber="gamesNumber" />
+    <Result :game="gameSelect" :gamesNumber="Number(gamesNumber)" />
   </div>
 </template>
 
@@ -31,12 +35,11 @@ export default {
     return {
       games: [
         "Lotto",
-        "Eurojackpot",
         "Keno",
         "Szybkie600",
         "MultiMulti",
         "EkstraPensja",
-        "Mini Lotto",
+        "MiniLotto",
         "Kaskada",
         "SuperSzansa"
       ],
@@ -54,4 +57,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+form {
+  display: flex;
+  flex-direction: column;
+}
+</style>
