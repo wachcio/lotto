@@ -2,20 +2,20 @@
   <div>
     <div>
       <form>
-        <div>
-          <label for="game">Wybierz grę z której chcesz poznać wyniki:</label>
+        <div class="form">
+          <label for="game">Wybierz grę z której chcesz poznać wyniki: </label>
           <select id="game" name="game" v-model="gameSelect">
             <option v-for="game in games" :key="game.id">{{ game }}</option>
           </select>
         </div>
-        <div>
-          <label for="gamesNumber">Wybierz liczbę ostatnich losowań (10-1000):</label>
+        <div class="form">
+          <label for="gamesNumber">Wybierz liczbę ostatnich losowań (10-10000): </label>
           <input
             type="number"
             id="gamesNumber"
             name="gamesNumber"
             min="10"
-            max="1000"
+            max="10000"
             v-model="gamesNumber"
           />
         </div>
@@ -35,10 +35,12 @@ export default {
     return {
       games: [
         "Lotto",
+        "LottoPlus",
         "Keno",
         "Szybkie600",
         "MultiMulti",
         "EkstraPensja",
+        "EkstraPremia",
         "MiniLotto",
         "Kaskada",
         "SuperSzansa"
@@ -58,8 +60,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-form {
+form,
+select,
+input,
+label,
+.form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+form {
+  padding-bottom: 1rem;
+}
+.form {
+  flex-direction: row;
+}
+label {
+  padding-right: 0.5rem;
 }
 </style>

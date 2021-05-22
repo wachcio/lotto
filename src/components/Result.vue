@@ -1,8 +1,12 @@
 <template>
   <div class="result" v-if="result">
     <div v-for="(gameResult, index) in result" :key="index">
-      {{ index + 1 }}) {{ new Date(gameResult.drawDate).toLocaleDateString() }} -
-      {{ gameResult.results[0].resultsJson.toString() }}
+      {{ new Date(gameResult.drawDate).toLocaleDateString() }} ({{
+        gameResult.results[0].drawSystemId
+      }}) -
+      {{
+        sortData([...gameResult.results[0].resultsJson, ...gameResult.results[0].specialResults])
+      }}
       <b>{{ gameResult.results[0].specialResults.toString() }}</b>
     </div>
   </div>
@@ -47,14 +51,10 @@ export default {
         });
     },
     sortData: item => {
-      let numbers = [];
-
-      item.forEach(i => {
-        if (i.type == 1) {
-          numbers.push(i.number);
-        }
-      });
-      return numbers.sort((a, b) => a - b).toString();
+      return item.sort((a, b) => a - b).toString();
+    },
+    multiMulti: (arr, plus) => {
+      return [...arr, plus];
     }
   },
   watch: {

@@ -1,16 +1,15 @@
 <template>
-  <img alt="Vue logo" src="http://lotto.pl/cdn/img/logo.2b905a2.svg"> Wyniki losowań
-  <Lotto/>
+  <Lotto />
 </template>
 
 <script>
-import Lotto from './components/Lotto.vue';
+import Lotto from "./components/Lotto.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Lotto,
-  },
+    Lotto
+  }
 };
 </script>
 
