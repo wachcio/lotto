@@ -27,14 +27,14 @@ export default {
     };
   },
   methods: {
-    async getData() {
+    async getData(game = this.game, gamesNumber = this.gamesNumber) {
       let that = this;
       return await axios
         .get(`http://lotto.wachcio.pl/API/lotto.php`, {
           params: {
-            game: this.game,
+            game: game,
             index: 1,
-            size: this.gamesNumber,
+            size: gamesNumber,
             sort: "drawDate",
             order: "DESC"
           }
@@ -64,6 +64,9 @@ export default {
     gamesNumber: function() {
       this.getData();
     }
+  },
+  mounted: function() {
+    this.getData("Lotto", 10);
   }
 };
 </script>

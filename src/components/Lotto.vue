@@ -5,7 +5,9 @@
         <div class="form">
           <label for="game">Wybierz grę z której chcesz poznać wyniki: </label>
           <select id="game" name="game" v-model="gameSelect">
-            <option v-for="game in games" :key="game.id">{{ game }}</option>
+            <option v-for="game in games" :key="game.id">
+              {{ game.name }}
+            </option>
           </select>
         </div>
         <div class="form">
@@ -34,16 +36,16 @@ export default {
   data() {
     return {
       games: [
-        "Lotto",
-        "LottoPlus",
-        "Keno",
-        "Szybkie600",
-        "MultiMulti",
-        "EkstraPensja",
-        "EkstraPremia",
-        "MiniLotto",
-        "Kaskada",
-        "SuperSzansa"
+        { name: "Lotto", url: "https://www.lotto.pl/cdn/img/gra_Lotto.d042cbc.svg" },
+        { name: "LottoPlus", url: "https://www.lotto.pl/cdn/img/gra_Lotto.d042cbc.svg" },
+        { name: "Keno", url: "https://www.lotto.pl/cdn/img/gra_Keno.641adc3.svg" },
+        { name: "Szybkie600", url: "https://www.lotto.pl/cdn/img/gra_Szybkie600.830c863.svg" },
+        { name: "MultiMulti", url: "https://www.lotto.pl/cdn/img/gra_MultiMulti.1c311b9.svg" },
+        { name: "EkstraPensja", url: "https://www.lotto.pl/cdn/img/gra_EkstraPensja.a7dfa68.svg" },
+        { name: "EkstraPremia", url: "https://www.lotto.pl/cdn/img/gra_EkstraPensja.a7dfa68.svg" },
+        { name: "MiniLotto", url: "https://www.lotto.pl/cdn/img/gra_MiniLotto.58cdcf2.svg" },
+        { name: "Kaskada", url: "https://www.lotto.pl/cdn/img/gra_Kaskada.0146a95.svg" },
+        { name: "SuperSzansa", url: "https://www.lotto.pl/cdn/img/gra_SuperSzansa.f25e623.svg" }
       ],
       gameSelect: "Lotto",
       gamesNumber: 10
@@ -82,4 +84,7 @@ form {
 label {
   padding-right: 0.5rem;
 }
+/* option {
+  background: #c3c3c3 url("https://www.lotto.pl/cdn/img/gra_Lotto.d042cbc.svg") repeat-x 0 0;
+} */
 </style>
