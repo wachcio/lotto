@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <form>
+      <form v-on:submit.prevent="">
         <div class="form">
           <label for="game">Wybierz grę z której chcesz poznać wyniki: </label>
           <select id="game" name="game" v-model="gameSelect">
@@ -9,12 +9,12 @@
           </select>
         </div>
         <div class="form">
-          <label for="gamesNumber">Wybierz liczbę ostatnich losowań (10-10000): </label>
+          <label for="gamesNumber">Wybierz liczbę ostatnich losowań (1-10000): </label>
           <input
             type="number"
             id="gamesNumber"
             name="gamesNumber"
-            min="10"
+            min="1"
             max="10000"
             v-model="gamesNumber"
           />
